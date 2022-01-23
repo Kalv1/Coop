@@ -7,7 +7,7 @@ export default {
   beforeCreate() {
     window.localStorage.removeItem('vuex')
     this.$store.commit('clearData')
-    this.$router.push('/')
+    this.$router.push('/connexion')
   }
 }
 </script>

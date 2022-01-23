@@ -22,9 +22,8 @@ export default {
   },
   methods : {
     deleteUser() {
-      console.log(this.id)
       this.$api.delete(`/members/${this.id}`).then(response => {
-        this.$router.go()
+        this.$emit('refreshMembers', this.id)
       })
     }
   }

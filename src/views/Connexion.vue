@@ -38,7 +38,6 @@ export default {
         email : this.email,
         password : this.password
       }).then(response => {
-        console.log(response.data.member.email)
         this.$store.commit('storeToken', response.data.token)
         this.$store.commit('storeMembre', response.data.member)
         this.$router.push('/')

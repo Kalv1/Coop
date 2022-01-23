@@ -2,7 +2,7 @@
   <div class="container">
     <div v-for="membre in this.membres">
       <div class="box mt-3">
-        <MembreComponent :membre="membre"/>
+        <MembreComponent v-on:refreshMembers="removeMembersData($event)" :membre="membre"/>
       </div>
     </div>
   </div>
@@ -21,6 +21,11 @@ export default {
   data() {
     return{
       membres: [],
+    }
+  },
+  methods : {
+    removeMembersData(idDelete) {
+      this.membres = this.membres.filter(membre => membre.id !== idDelete)
     }
   }
 }
