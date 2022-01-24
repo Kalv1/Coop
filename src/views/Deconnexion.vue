@@ -5,9 +5,11 @@
 export default {
   name: "Deconnexion",
   beforeCreate() {
-    window.localStorage.removeItem('vuex')
-    this.$store.commit('clearData')
-    this.$router.push('/connexion')
+    this.$api.delete('/members/signout').then(response => {
+      console.log(response)
+      this.$store.commit('clearData')
+      this.$router.push('/connexion')
+    })
   }
 }
 </script>
