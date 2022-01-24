@@ -15,14 +15,14 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">
+          <a v-if="this.$store.state.token" class="navbar-item">
             <router-link to="/">
               Conversation
               <i class="far fa-comments"></i>
             </router-link>
           </a>
 
-          <a class="navbar-item">
+          <a v-if="this.$store.state.token" class="navbar-item">
             <router-link to="/membres">
               Membres
               <i class="fas fa-user"></i>

@@ -13,6 +13,11 @@ import MembreComponent from "../components/MembreComponent";
 export default {
   name: "Membres",
   components: {MembreComponent},
+  beforeCreate() {
+    if(!this.$store.state.token) {
+      this.$router.push('connexion')
+    }
+  },
   mounted() {
     this.$api.get("/members").then(reponse => {
       this.membres = reponse.data
