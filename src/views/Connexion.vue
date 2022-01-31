@@ -38,8 +38,10 @@ export default {
         email : this.email,
         password : this.password
       }).then(response => {
+        console.log(response.data)
         this.$store.commit('storeToken', response.data.token)
         this.$store.commit('storeMembre', response.data.member)
+        console.log(this.$store.state)
         this.$router.push('/')
       }).catch(error => {
         alert(error.response.data.message)

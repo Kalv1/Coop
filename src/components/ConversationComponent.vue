@@ -9,7 +9,7 @@
 <script>
 export default {
   name: "ConversationComponent",
-  props: ['label', 'topic', 'datecrea']
+  props: ['label', 'topic', 'datecrea'],
 }
 </script>
 
