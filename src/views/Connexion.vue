@@ -28,8 +28,8 @@ export default {
   name: "Connexion",
   data () {
     return {
-      email: '',
-      password: '',
+      email: 'adri@gmail.com',
+      password: 'Lemdp123',
     }
   },
   methods : {
