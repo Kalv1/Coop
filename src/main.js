@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios';
 
+Vue.prototype.$bus = new Vue({});
 
 Vue.prototype.$api = axios.create({
   baseURL: 'https://allweb.fun/coop/api',

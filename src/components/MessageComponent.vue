@@ -2,10 +2,16 @@
   <div>
     <div v-if="this.member" class="is-flex">
       <img class='mr-2' :src="mailtoMD5" width="20" height="20" alt="">
-      <h1><strong><router-link :to="{ name:'MembreProfil' , params:{ id: this.id }}">{{ member.fullname }}</router-link></strong> : {{ message }}</h1>
+      <h1><strong><router-link :to="{ name:'MembreProfil' , params:{ id: this.id }}">{{ member.fullname }}</router-link></strong> : {{ messageNoEdit }}</h1>
+      <button v-if="id === this.$store.state.membre.id" class="ml-2 button is-small" @click="edit = !edit"><i class="fas fa-edit"></i></button>
+      <button v-if="id === this.$store.state.membre.id" class="ml-2 button is-small" @click="deleteMsg"><i class="fas fa-trash-alt"></i></button>
     </div>
     <div v-else>
         <h1>Deleted user : {{ message }}</h1>
+    </div>
+    <div v-if="edit === true">
+      <textarea class="textarea mt-5" placeholder="Ecrivez votre messages ici" rows="10" v-model="messageEdit"/>
+      <button @click="sendEdit" class="button is-primary mt-2">Envoyer</button>
     </div>
 
   </div>
@@ -16,10 +22,26 @@ import md5 from "crypto-js/md5";
 
 export default {
   name: "MessageComponent",
-  props: ['message', 'id'],
+  props: ['message', 'id', 'idmsg'],
   data() {
     return {
+      messageNoEdit : this.message,
       member: {},
+      edit: false,
+      messageEdit : '',
+    }
+  },
+  methods : {
+    deleteMsg(){
+      this.$api.delete(`channels/${this.$route.params.id}/posts/${this.idmsg}`)
+      this.$bus.$emit('deleteMsg', this.idmsg)
+    },
+    sendEdit(){
+      this.$api.put(`/channels/${this.$route.params.id}/posts/${this.idmsg}`, {message : this.messageEdit}).then(response => {
+        this.messageNoEdit = this.messageEdit
+        this.messageEdit = ''
+        this.edit = false
+      })
     }
   },
   mounted() {
