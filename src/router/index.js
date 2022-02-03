@@ -7,42 +7,42 @@ const routes = [
   {
     path: '/',
     name: 'Conversation',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Conversations.vue')
+    component: () => import('../views/Conversations.vue')
   },
   {
     path: '/inscription',
     name: 'Inscription',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CreationCompte.vue')
+    component: () => import('../views/CreationCompte.vue')
   },
   {
     path: '/connexion',
     name: 'Connexion',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Connexion.vue')
+    component: () => import('../views/Connexion.vue')
   },
   {
     path: '/creationconv',
     name: 'CreationConv',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CreationConv.vue')
+    component: () => import('../views/CreationConv.vue')
   },
   {
     path: '/membres',
     name: 'Membres',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Membres.vue')
+    component: () => import('../views/Membres.vue')
   },
   {
     path: '/profil/:id',
     name: 'MembreProfil',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MembreProfil.vue')
+    component: () => import('../views/MembreProfil.vue')
   },
   {
     path: '/deconnexion',
     name: 'Deconnexion',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Deconnexion.vue')
+    component: () => import('../views/Deconnexion.vue')
   },
   {
     path: '/conversation/:id',
     name: 'ConversationDetails',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Conversation.vue')
+    component: () => import('../views/Conversation.vue')
   },
 
 ]
