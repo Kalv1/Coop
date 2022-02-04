@@ -4,9 +4,9 @@
       <h4 class="title is-4">Conversation : {{ this.topic.label }}</h4>
       <h5 class="subtitle is-5 mt-5">{{ this.topic.topic }}</h5>
     </div>
-    <div v-for="rep in response" class="box ml-5">
+    <template v-for="rep in response">
       <MessageComponent :idmsg="rep.id" :message="rep.message" :id="rep.member_id"/>
-    </div>
+    </template>
     <textarea class="textarea" placeholder="Ecrivez votre messages ici" rows="10" v-model="message"/>
     <button @click="sendMessage" class="button is-primary mt-2">Envoyer</button>
   </div>
@@ -44,9 +44,6 @@ export default {
     this.$api.get(`/channels/${this.$route.params.id}/posts`).then(response => {
       this.response = response.data
       this.response = this.response.reverse()
-    })
-    this.$bus.$on('deleteMsg', (id) => {
-      console.log(id)
     })
   }
 }

@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div v-if="display" class="box ml-5">
     <div v-if="this.member" class="is-flex">
       <img class='mr-2' :src="mailtoMD5" width="20" height="20" alt="">
-      <h1><strong><router-link :to="{ name:'MembreProfil' , params:{ id: this.id }}">{{ member.fullname }}</router-link></strong> : {{ messageNoEdit }}</h1>
+      <h1><strong><router-link :to="{ name:'MembreProfil' , params:{ id: this.id }}">{{ member.fullname }}</router-link></strong> : <span v-html="messageNoEdit"/></h1>
       <button v-if="id === this.$store.state.membre.id" class="ml-2 button is-small" @click="edit = !edit"><i class="fas fa-edit"></i></button>
       <button v-if="id === this.$store.state.membre.id" class="ml-2 button is-small" @click="deleteMsg"><i class="fas fa-trash-alt"></i></button>
     </div>
@@ -28,13 +28,14 @@ export default {
       messageNoEdit : this.message,
       member: {},
       edit: false,
+      display : true,
       messageEdit : '',
     }
   },
   methods : {
     deleteMsg(){
       this.$api.delete(`channels/${this.$route.params.id}/posts/${this.idmsg}`)
-      this.$bus.$emit('deleteMsg', this.idmsg)
+      this.display = false
     },
     sendEdit(){
       this.$api.put(`/channels/${this.$route.params.id}/posts/${this.idmsg}`, {message : this.messageEdit}).then(response => {
